@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZ_AKS_CREDS }}
+          resource-group: DefaultResourceGroup-WEU
+          cluster-name: k8s-sandbox
